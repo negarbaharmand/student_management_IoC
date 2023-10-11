@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
-public class ScannerInputService implements UserInputService{
+public class ScannerInputService implements UserInputService {
     private Scanner scanner;
 
     public ScannerInputService(Scanner scanner) {
@@ -14,11 +14,19 @@ public class ScannerInputService implements UserInputService{
 
     @Override
     public String getString() {
-        return scanner.nextLine();
+        if (scanner != null) {
+            return scanner.nextLine();
+        } else {
+            throw new IllegalStateException("Input can not be null.");
+        }
     }
 
     @Override
     public int getInt() {
-        return scanner.nextInt();
+        if (scanner != null) {
+            return scanner.nextInt();
+        } else {
+            throw new IllegalStateException("Input can not be null.");
+        }
     }
 }
